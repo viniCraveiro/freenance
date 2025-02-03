@@ -37,6 +37,17 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps
       - uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: main
+          set-environment-variables-for-job: true
+          error-on-no-successful-workflow: false
+          last-successful-event: push
+
+      - name: Debug nx-set-shas
+        run: |
+          echo "Branch: ${{ github.ref }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "SHA: ${{ github.sha }}"
 
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
       # - run: pnpm exec nx-cloud record -- echo Hello World
