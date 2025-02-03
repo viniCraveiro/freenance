@@ -2,16 +2,32 @@
   "name": "server-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "implicitDependencies": ["server"],
+  "implicitDependencies": [
+    "server"
+  ],
   "targets": {
     "e2e": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{e2eProjectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/server-e2e/jest.config.ts",
-        "passWithNoTests": true
+        "passWithNoTests": true,
+        "runInBand": true,
+        "devServerTarget": "server:serve:development"
       },
-      "dependsOn": ["server:build"]
+      "configurations": {
+        "ci": {
+          "devServerTarget": "server:serve:ci"
+        },
+        "production": {
+          "devServerTarget": "server:serve:production"
+        }
+      },
+      "dependsOn": [
+        "server:build"
+      ]
     }
   }
 }

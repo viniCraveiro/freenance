@@ -15,4 +15,8 @@ export default {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/server-e2e',
+  testEnvironmentOptions: {
+    testTimeout: 30000,
+  },
+  testTimeout: 30000,
 };

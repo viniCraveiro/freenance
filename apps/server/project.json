@@ -31,6 +31,12 @@
         },
         "production": {
           "buildTarget": "server:build:production"
+        },
+        "ci": {
+          "buildTarget": "server:build:production",
+          "port": 3000,
+          "host": "0.0.0.0",
+          "args": ["--listen"]
         }
       }
     },
